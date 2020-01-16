@@ -1,0 +1,33 @@
+zkillboard.com/kill/58073588/   32,760,000
+zkillboard.com/kill/57790236/  250,360,000
+zkillboard.com/kill/57663454/    7,560,000
+zkillboard.com/kill/57508808/  130,790,000
+zkillboard.com/kill/57507838/   35,830,000
+zkillboard.com/kill/57436072/   35,660,000
+zkillboard.com/kill/57184453/    6,850,000
+zkillboard.com/kill/57116598/   70,440,000
+zkillboard.com/kill/57116595/   21,590,000
+zkillboard.com/kill/56971091/   87,460,000
+zkillboard.com/kill/56783605/    7,140,000
+zkillboard.com/kill/56748980/   13,300,000
+zkillboard.com/kill/56730734/   34,680,000
+zkillboard.com/kill/56726782/    7,890,000
+zkillboard.com/kill/56714540/   13,390,000
+zkillboard.com/kill/56701498/    6,250,000
+zkillboard.com/kill/56701093/    6,340,000
+zkillboard.com/kill/56701023/    8,800,000
+zkillboard.com/kill/56629493/    6,760,000
+zkillboard.com/kill/56614392/   10,350,000
+zkillboard.com/kill/56605376/    8,060,000
+zkillboard.com/kill/56579183/   30,560,000
+zkillboard.com/kill/56528956/    7,290,000
+zkillboard.com/kill/56528341/   10,800,000
+zkillboard.com/kill/56527474/    7,810,000
+zkillboard.com/kill/56493908/   72,020,000
+zkillboard.com/kill/56493907/   31,020,000
+zkillboard.com/kill/56490904/   30,670,000
+zkillboard.com/kill/56490559/    6,630,000
+
+
+total : 999,060,000
+2016-09-25
