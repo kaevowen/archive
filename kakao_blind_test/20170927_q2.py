@@ -14,7 +14,6 @@ def dart_game(scores):
             if scores[i] == 'S':
                 k.append(pow(n, 1))
 
-
             elif scores[i] == 'D':
                 k.append(pow(n, 2))      
 
@@ -32,12 +31,11 @@ def dart_game(scores):
                     k[l] *= 2
                     k[l-1] *= 2
 
-
             elif scores[i] == '#':
                 l = len(k)-1
                 k[l] *= -1
 
-    return k, sum(k)
+    return sum(k)
 
 print('1.',dart_game('1S2D*3T'))
 print('2.',dart_game('1D2S#10S'))
