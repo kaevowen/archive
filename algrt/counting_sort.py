@@ -1,3 +1,7 @@
+import random
+import timeit
+import sys
+
 def counting_sort(values, k):
     #make list using a length
     b = [-1] * len(values)
@@ -15,7 +19,18 @@ def counting_sort(values, k):
         count[values[i]] -= 1
 
     return b
+'''
+a = [i for i in range(1,10000)]
+a = random.sample(a, 9999)
 
+t = timeit.Timer(lambda:counting_sort(a,max(a)))
+print(t.timeit(number=1))
+'''
 
-a=[5,2,4,6,2,1,5,5,4,4,2,3,1,0,100000]
-print(counting_sort(a,max(a)))
+n = int(sys.stdin.readline())
+k = []
+for i in range(n):
+    k.append(int(sys.stdin.readline().rstrip()))
+
+for i in counting_sort(k, max(k)):
+    print(i)

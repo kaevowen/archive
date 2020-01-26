@@ -1,18 +1,21 @@
-def quick_sort(v, start, end):
-    if end - start <= 0:
-        return
+import random
+import timeit
+import sys
 
-    pivot = a[end]
-    i = start
+def partition(arr):
+    pivot = arr[random.randrange(len(arr))]
+    left, right = [], []
 
-    for j in range(start, end):
-        if a[j] <= pivot:
-            a[i], a[j] = a[j], a[i]
-            i += 1
+    for a in arr:
+        if pivot > a:
+            left.append(a)
+        elif pivot < a:
+            right.append(a)
 
-    a[i], a[end] = a[end], a[i]
-    quick_sort_acc(a, start, i-1)
-    quick_sort_acc(a, i+1, end)
 
-def quick_sort_acc(a):
-    quick_sort(a, 0, len(a), len(a)-1)
+    return left, [pivot], right
+
+arr = [50,115,203,512,125,111,25,95,45,23,32,659,55,123]
+
+print(partition(arr))
+
