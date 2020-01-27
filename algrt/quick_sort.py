@@ -1,21 +1,18 @@
-import random
-import timeit
 import sys
 
-def partition(arr):
-    pivot = arr[random.randrange(len(arr))]
-    left, right = [], []
+def sort(arr):
+    if len(arr) <= 0:
+        return arr
 
-    for a in arr:
-        if pivot > a:
-            left.append(a)
-        elif pivot < a:
-            right.append(a)
+    pivot = arr[len(arr)//2]
+    left = []
+    right = []
 
+    for i in arr:
+        if i > pivot:
+            right.append(i)
 
-    return left, [pivot], right
+        elif i < pivot:
+            left.append(i)
 
-arr = [50,115,203,512,125,111,25,95,45,23,32,659,55,123]
-
-print(partition(arr))
-
+    return sort(left) + [pivot] + sort(right)
