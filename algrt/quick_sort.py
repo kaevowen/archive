@@ -1,18 +1,18 @@
-def quick_sort(v, start, end):
-    if end - start <= 0:
-        return
+import sys
 
-    pivot = a[end]
-    i = start
+def sort(arr):
+    if len(arr) <= 0:
+        return arr
 
-    for j in range(start, end):
-        if a[j] <= pivot:
-            a[i], a[j] = a[j], a[i]
-            i += 1
+    pivot = arr[len(arr)//2]
+    left = []
+    right = []
 
-    a[i], a[end] = a[end], a[i]
-    quick_sort_acc(a, start, i-1)
-    quick_sort_acc(a, i+1, end)
+    for i in arr:
+        if i > pivot:
+            right.append(i)
 
-def quick_sort_acc(a):
-    quick_sort(a, 0, len(a), len(a)-1)
+        elif i < pivot:
+            left.append(i)
+
+    return sort(left) + [pivot] + sort(right)
