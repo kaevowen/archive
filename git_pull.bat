@@ -1,1 +1,1 @@
-git pull archive master
+git pull origin master
