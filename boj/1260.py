@@ -10,7 +10,6 @@ def BFS(graph, root):
 
 	return visited
 
-
 def DFS(graph, root):
 	visited = []
 	stack = [root]
@@ -35,6 +34,9 @@ def DFS_recursive(graph, start, end, visited=[]):
 	
 	return visited
 
+#N = 정점의 개수
+#M = 간선의 개수
+#V = 인덱스(시작) 번호
 N, M, V = map(int, input().split())
 graph_list = [set([]) for _ in range(N+1)]
 for _ in range(M):
@@ -42,6 +44,7 @@ for _ in range(M):
 	graph_list[i].add(j)
 	graph_list[j].add(i)
 
+print(graph_list)
 
 for i in list(DFS(graph_list, V)):
 	print(i, end=' ')
