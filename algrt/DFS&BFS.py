@@ -26,7 +26,7 @@ def DFS(graph, start, end, visited=[]):
 	
 	return visited
 
-
+'''
 #test case
 korea = {'세종': set(['서울', '강릉', '대구', '광주']),
          '서울': set(['평양', '인천', '세종']),
@@ -45,3 +45,6 @@ print(BFS(korea, '세종'))
 paths=[]
 DFS(korea, '평양', '부산')
 print(paths)
+
+'''
+
