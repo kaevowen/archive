@@ -1,44 +1,69 @@
+import random
+
+SAMPLE_ALPHABET = [
+'A','B','C','D','E','F',
+'G','H','I','J','K','L',
+'M','N','O','P','Q','R',
+'S','T','U','V','W','X',
+'Y','Z'
+]
+
 def rotate(cipher, char) :
-	new_cipher = []
+    new_cipher = []
+    for c in cipher :
+        new_cipher.append(c)
 
-	for c in cipher :
-		new_cipher.append(c)
+    count = 26 - new_cipher.index(char)
 
-	count = 26 - new_cipher.index(char)
+    for i in range(count) :
+        new_cipher.insert(0, new_cipher.pop())
 
-	for i in range(count) :
-		new_cipher.insert(0, new_cipher.pop())
+    return ''.join(new_cipher)
 
-	return ''.join(new_cipher)
 
-disk = [
-	'ZWAXJGDLUBVIQHKYPNTCRMOSFE', # 1
-	'KPBELNACZDTRXMJQOYHGVSFUWI', # 2
-	'BDMAIZVRNSJUWFHTEQGYXPLOCK', # 3
-	'RPLNDVHGFCUKTEBSXQYIZMJWAO', # 4
-	'IHFRLABEUOTSGJVDKCPMNZQWXY', # 5
-	'AMKGHIWPNYCJBFZDRUSLOQXVET', # 6
-	'GWTHSPYBXIZULVKMRAFDCEONJQ', # 7
-	'NOZUTWDCVRJLXKISEFAPMYGHBQ', # 8
-	'XPLTDSRFHENYVUBMCQWAOIKZGJ', # 9
-	'UDNAJFBOWTGVRSCZQKELMXYIHP'  # 10
-] # 보내고 싶은 메세지에 따라서 크기가 바뀔수도?
-  # 하지만 너무 길어지면 뚫릴지도 모름
+# 1 == 암호화 2 == 복호화 
+sel = int(input('1 == 암호화, 2 == 복호화 : '))
+if sel == 1:
+    n = int(input('글자 몇개? '))
 
-key = [7,9,5,10,1,6,3,8,2,4] # 숫자지정가능
+    key = [_ for _ in range(n)]
+    disk = []
+    for i in range(n):
+        disk.append("".join(random.sample(SAMPLE_ALPHABET,26)))
 
-new_disk = [] # 따로 선언안하고 원래 있던곳에서 처리하고싶은데
+    key = random.sample(key, len(disk))
 
-for i in range(len(key)) :
-	new_disk.append(disk[key[i] - 1])
+    new_disk = [] # 따로 선언안하고 원래 있던곳에서 처리하고싶은데
 
-word = 'HELLOTHERE' # 이것도 지정가능. 아니면 지정한 단어에 맞춰서 랜덤한 디스크를 생성해야할듯
+    for i in range(len(key)) :
+        new_disk.append(disk[key[i]-1])
 
-for j in range(len(new_disk)) :
-	new_disk[j] = new_disk[j].replace(new_disk[j], rotate(new_disk[j], word[j]))
-	# 돌린다음에 다시 저장
+    word = 'hellothere'.upper()
 
-for k in new_disk :
-	print(k[0], end = '') # 숫자지정가능
-print()
+    for j in range(len(new_disk)) :
+        new_disk[j] = new_disk[j].replace(new_disk[j], 
+            rotate(new_disk[j], word[j]))
+    with open('disk.txt','w') as f:
+        for nd in new_disk:
+            f.write(nd+'\n')
+        print("key : ", *key)
+        for k in key:
+            f.write('%d ' % k)
+
+    print("암호화 완료. 텍스트파일을 밥에게 전해주세요.")
+
+elif sel == 2:
+    print("디스크를 입력해주세요")
+    try:
+        with open('disk', 'r') as f:
+
+    except IOError:
+        print()
+
+    print(disk)
+else:
+    print("올바른 메뉴를 선택 해주세요.")
+#암호화시 디스크 랜덤 생성. 복호화 과정에서는 미리 생성된 디스크로 해야함!
+
+
 
