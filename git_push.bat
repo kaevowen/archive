@@ -1,5 +1,5 @@
 git status
 git add .
 git commit -m "meh"
-git push
+git push origin master
 pause
