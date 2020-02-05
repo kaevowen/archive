@@ -1,71 +1,38 @@
 class Node(object):
-    def __init__(self, data):
+    def __init__(self, data, left, right):
         self.data = data
-        self.left = self.right = None
+        self.left = left
+        self.right = right
 
-class BinarySearchTree(object):
-    def __init__(self):
-        self.root = None
+def PreOrder(node):
+    print(node.data, end='')
+    if node.left != '.':
+        PreOrder(tree[node.left])
+    if node.right != '.':
+        PreOrder(tree[node.right])
 
-    def insert(self, data):
-        self.root = self._insert_value(
-            self.root, data)
-        return self.root is not None
+def InOrder(node):
+    if node.left != '.':
+        InOrder(tree[node.left])
+    print(node.data, end='')
+    if node.right != '.':
+        InOrder(tree[node.right])
 
-    def _insert_value(self, node, data):
-        if node is None:
-            node = Node(data)
-        else:
-            if data <= node.data:
-                node.left = self._insert_value(
-                    node.left, data)
-            else:
-                node.right = self._insert_value(
-                    node.right, data)
-        return node
+def PostOrder(node):
+    if node.left != '.':
+        PostOrder(tree[node.left])
+    if node.right != '.':
+        PostOrder(tree[node.right])
+    print(node.data, end='')
 
-    def PreOrder(self):
-        def _pre_order_traversal(root):
-            if root is None:
-                pass
-            else:
-                print(root.data)
-                _pre_order_traversal(root.left)
-                _pre_order_traversal(root.right)
-        _pre_order_traversal(self.root)
+n = int(input())
+tree = {}
+for i in range(n):
+    data = input().split(' ')
+    tree[data[0]] = Node(data=data[0], left=data[1], right=data[2])
 
-    def InOrder(self):
-        def _in_order_traversal(root):
-            if root is None:
-                pass
-            else:
-                _in_order_traversal(root.left)
-                print(root.data)
-                _in_order_traversal(root.right)
-        _in_order_traversal(self.root)
-
-    def PostOrder(self):
-        def _post_order_traversal(root):
-            if root is None:
-                pass
-            else:
-                _post_order_traversal(root.left)
-                _post_order_traversal(root.right)
-                print(root.data)
-        _post_order_traversal(self.root)
-    
-
-bst = BinarySearchTree()
-
-node = [
-'A','B','D','C','E','F','G'
-]
-for x in node:
-    bst.insert(x)
-
-bst.PreOrder()
-print("------------")
-bst.InOrder()
-print("------------")
-bst.PostOrder()
-print("------------")
+PreOrder(tree['A'])
+print()
+InOrder(tree['A'])
+print()
+PostOrder(tree['A'])

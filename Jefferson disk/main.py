@@ -8,55 +8,50 @@ SAMPLE_ALPHABET = [
 'Y','Z'
 ]
 
-def rotate(cipher, char) :
-    new_cipher = []
-    for c in cipher :
-        new_cipher.append(c)
-
-    count = 26 - new_cipher.index(char)
-
-    for i in range(count) :
-        new_cipher.insert(0, new_cipher.pop())
-
-    return ''.join(new_cipher)
+def rotate(disk, word) :
+    if disk[0] == word:
+        return disk
+    else:
+        return rotate(disk[-1] + disk[:-1], word)
 
 
-# 1 == 암호화 2 == 복호화 
 sel = int(input('1 == 암호화, 2 == 복호화 : '))
 if sel == 1:
-    n = int(input('글자 몇개? '))
-
-    key = [_ for _ in range(n)]
-    disk = []
-    for i in range(n):
+    word = input("영어단어입력(공백ㄴㄴ 대문자만)").upper()
+    key = [_ for _ in range(1, len(word)+1)]
+    disk = [
+    'DBYLIXTVFKZGHASJREWPUNCQMO',
+    'EUJVWYGSIHAFRBXODNTPZQMCKL',
+    'HRFKVAMUQYNLECZBTOGXJSIPDW',
+    'FRAHMTGPLIUKEQZCNSDOVBJWXY',
+    'WREXDPJUSHCOYBLTMFNIVGQZKA',
+    ]
+    '''
+    for i in range(len(word)):
         disk.append("".join(random.sample(SAMPLE_ALPHABET,26)))
-
+    '''
     key = random.sample(key, len(disk))
+    new_disk = []
+    for i in range(len(disk)):
+        new_disk.append(rotate(disk[i], word[i]))
+        print(disk[i])
+    print("위의 문자열을 밥에게 전해주세요.")
+    print("===========================")
+    print("")
+    for i in range(len(disk)):
+        print(new_disk[i])
 
-    new_disk = [] # 따로 선언안하고 원래 있던곳에서 처리하고싶은데
-
-    for i in range(len(key)) :
-        new_disk.append(disk[key[i]-1])
-
-    word = 'hellothere'.upper()
-
-    for j in range(len(new_disk)) :
-        new_disk[j] = new_disk[j].replace(new_disk[j], 
-            rotate(new_disk[j], word[j]))
-    with open('disk.txt','w') as f:
-        for nd in new_disk:
-            f.write(nd+'\n')
-        print("key : ", *key)
-        for k in key:
-            f.write('%d ' % k)
-
+if sel == 2:
+    pass
+        
+'''
     print("암호화 완료. 텍스트파일을 밥에게 전해주세요.")
 
 elif sel == 2:
     print("디스크를 입력해주세요")
     try:
         with open('disk', 'r') as f:
-
+            pass
     except IOError:
         print()
 
@@ -65,5 +60,4 @@ else:
     print("올바른 메뉴를 선택 해주세요.")
 #암호화시 디스크 랜덤 생성. 복호화 과정에서는 미리 생성된 디스크로 해야함!
 
-
-
+'''
