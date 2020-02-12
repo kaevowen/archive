@@ -1,48 +1,48 @@
 from collections import defaultdict
 
+
 class Graph():
-	def __init__(self, V):
-		self.V = V
-		self.graph = defaultdict(list)
+    def __init__(self, V):
+        self.V = V
+        self.graph = defaultdict(list)
+        self.visited = [False] * self.V
 
-	def addEdge(self, v, w):
-		self.graph[v].append(w)
-		self.graph[w].append(v)
+    def addEdge(self, v, w):
+        self.graph[v].append(w)
+        self.graph[w].append(v)
 
-	def isCyclicUtil(self, v, visited, parent):
-		visited[v] = True
+    def fn(self, v, parent):
+        self.visited[v] = True
+        it = iter(self.graph[v])
+        for i in it:
+            print(i)
+            adj = int(i)
+            if False == self.visited[adj]:
+                ans = self.fn(adj, v)
+                if ans == False:
+                    return False
+            else:
+                if True == self.visited[adj]:
+                    if adj != parent:
+                        return False
+        return True
 
-		for i in self.graph[v]:
-			if visited[i] == False:
-				if self.isCyclicUtil(i, visited, v):
-					return True
+tree = []
+case = 1
 
-				elif i != parent:
-					return True
+while 1:
+    i = list(map(int, input().split(' ')))
+    tree.append(i)
+    if tree[-1] == [0, 0]:
+        del tree[-1]
+        g1 = Graph(len(tree))
 
-		return False
+        for x in tree:
+            g1.addEdge(x[0], x[1])
 
-	def isTree(self):
-		visited = [False] * self.V
+        print(f"Case {case} is a tree") if g1.fn(0, 0) == True else print(f"Case {case} is not a tree")
+        case += 1
+        tree = []
 
-		if self.isCyclicUtil(0, visited, -1) == True:
-			return False
-
-		for i in range(self.V):
-			if visited[i] == False:
-				return False
-				
-		return True
-
-tree = [[6,8],[5,3],[5,2],[6,4],[5,6]]
-g1 = Graph(5)
-
-#for x in tree:
-#	g1.addEdge(x[0], x[1])
-
-g1.addEdge(1,0)
-g1.addEdge(0,2)
-g1.addEdge(0,3)
-g1.addEdge(3,4)
-
-print(g1.isTree())
+    elif tree[-1] == [-1,-1]:
+        break
