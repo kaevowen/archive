@@ -24,7 +24,7 @@ _REQUESTS_KWARGS = {
 async def main():
     async with PixivClient() as client:
         aapi = AppPixivAPI(**_REQUESTS_KWARGS, client=client)
-        await aapi.login('kaev','gkznfpdl1')
+        await aapi.login('kaev','')
         json_result = await aapi.illust_ranking('day_male')
 
         directory = "dl"
