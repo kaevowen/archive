@@ -18,7 +18,6 @@ def restaurantDetail(req, res_id):
     return render(req, 'shareRes/restaurantDetail.html', content)
 
 
-
 def restaurantCreate(req):
     categories = Category.objects.all()
     content = {'categories': categories}

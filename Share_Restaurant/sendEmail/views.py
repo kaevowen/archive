@@ -9,6 +9,8 @@ from email.mime.multipart import MIMEMultipart
 
 
 # Create your views here.
+
+
 def sendEmail(req):
     checked_res_list = req.POST.getlist('checks')
     inputReceiver = req.POST['inputReceiver']
@@ -30,4 +32,16 @@ def sendEmail(req):
         mail_html += "<br>"
         mail_html += "</body></html>"
 
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.login('kaeshi9@gmail.com', 'Gkznfpdl1!')
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = inputTitle
+    msg['From'] = 'kaeshi9@gmail.com'
+    msg['To'] = inputReceiver
+    mail_html = MIMEText(mail_html, 'html')
+    msg.attach(mail_html)
+    print(msg['To'], type(msg['To']))
+    server.sendmail(msg['From'], msg['To'].split(','), msg.as_string())
+    server.quit()
     return HttpResponseRedirect(reverse('index'))
