@@ -1,12 +1,18 @@
-n=5
-for i in range(n*2-1, 0, -2):
-	print("5"*i + '1'*(n-i))
-	#print(i, n-j)
-print()
+n = 5
+k = n-1
+pivot = (n+(n-1)) // 2
 
+print(n, k, pivot)
 
-#00100
-#01110
-#11111
-#01110
-#00100
+for i in range(0, n):
+	for j in range(0, n+(n-1)):
+		if j >= pivot - k and j <= pivot + k :
+			print("*", end='')
+		else:
+			print(" ", end='')
+	
+	if i == n-1 :
+		break
+	else :			
+		print("")
+		k+=1
